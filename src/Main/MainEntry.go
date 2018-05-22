@@ -1,7 +1,7 @@
 package main
 
 import (
-	"encoding/json"
+	"Utils"
 	"fmt"
 	"log"
 	"net/http"
@@ -23,11 +23,19 @@ func handler1(w http.ResponseWriter, r *http.Request) {
 
 	switch r.URL.Path[1:] {
 	case "OK":
-		w.Header().Add("Content-Type", "application/json")
-		w.WriteHeader(200)
-		m := Message{"Alice", "Hello", 1294706395881547000}
-		b, _ := json.Marshal(m)
-		w.Write(b)
+		//		m := Message{"HOT", "Hello", 1294706395881547000}
+		Utils.BuildJsonResp(w, Message{"HOT", "Hello", 1294706395881547000})
+		//		w.WriteHeader(200)
+	case "OK2":
+		m := Message{"HERE", "Hello", 1294706395881547000}
+		//		w.WriteHeader(200)
+		Utils.BuildJsonResp(w, m)
+	case "3RD":
+		m := Message{"THERE", "hi", 1294706395881547000}
+		Utils.BuildJsonResp(w, m)
+		w.WriteHeader(204)
+	case "444":
+		w.WriteHeader(204)
 	case "NotFound":
 		w.WriteHeader(404)
 	case "InternalServerError":
@@ -36,7 +44,6 @@ func handler1(w http.ResponseWriter, r *http.Request) {
 		log.Println("not such path")
 		w.WriteHeader(500)
 	}
-
 }
 
 func main() {
