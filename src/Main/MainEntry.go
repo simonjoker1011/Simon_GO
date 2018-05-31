@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Utils"
+	"Utils/Settings"
 	"fmt"
 	"log"
 	"net/http"
