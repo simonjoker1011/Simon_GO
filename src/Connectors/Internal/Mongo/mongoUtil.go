@@ -24,7 +24,5 @@ func Mongo_getSession() *mgo.Session {
 	}
 	session.SetMode(mgo.Monotonic, true)
 
-	//	defer session.Close()
-
 	return session
 }
